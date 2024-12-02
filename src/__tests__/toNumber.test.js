@@ -15,6 +15,11 @@ describe('toNumber', () => {
         expect(toNumber('3.14')).toBe(3.14)
         expect(toNumber('  -12  ')).toBe(-12)
       })
+      test('should correctly handle binary, octal, and hexadecimal strings', () => {
+        expect(toNumber('0b101')).toBe(5)
+        expect(toNumber('0o77')).toBe(63)
+        expect(toNumber('0xFF')).toBe(255)
+      })
 
       test('should handle large and small numbers', () => {
         expect(toNumber(Number.MAX_VALUE)).toBe(Number.MAX_VALUE)

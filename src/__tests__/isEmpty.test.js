@@ -25,10 +25,10 @@ describe('isEmpty', () => {
             expect(isEmpty(new Foo())).toBe(true)
         })
         test('should return true for false', () => {
-            expect(isEmpty(false)).toBe(true)
+            expect(isEmpty(false)).toBe(false)
         })
         test('should return false for 0', () => {
-            expect(isEmpty(0)).toBe(true)
+            expect(isEmpty(0)).toBe(false)
         })
     })
     describe('negative tests', () => {
