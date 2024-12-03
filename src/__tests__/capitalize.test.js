@@ -1,4 +1,5 @@
 import capitalize from '../capitalize';
+import {expect, describe, test} from '@jest/globals'
 
 describe('capitalize', () => {
     describe('positive tests', () => {
