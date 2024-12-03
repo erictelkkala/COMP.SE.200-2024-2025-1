@@ -2,11 +2,30 @@ import isEmpty from '../isEmpty';
 
 describe('isEmpty', () => {
     describe('positive tests', () => {
-        test('should return true for null, undefined, true and 1', () => {
-            expect(isEmpty(null)).toBe(true)
-            expect(isEmpty(undefined)).toBe(true)
-            expect(isEmpty(true)).toBe(true)
-            expect(isEmpty(1)).toBe(true)
+        describe('cases that should be true', () => {
+            test('should return true for null', () => {
+                expect(isEmpty(null)).toBe(true)
+            })
+            test('should return true for undefined', () => {
+                expect(isEmpty(undefined)).toBe(true)
+            })
+            test('should return true for true', () => {
+                expect(isEmpty(true)).toBe(true)
+            })
+            test('should return true for 1', () => {
+                expect(isEmpty(1)).toBe(true)
+            })
+        })
+        describe('arrays, strings and objects', () => {
+            test('should return true for empty array', () => {
+                expect(isEmpty([])).toBe(true)
+            })
+            test('should return true for empty string', () => {
+                expect(isEmpty('')).toBe(true)
+            })
+            test('should return true for empty object', () => {
+                expect(isEmpty({})).toBe(true)
+            })
         })
         test('should return true for empty arrays and strings', () => {
             expect(isEmpty([])).toBe(true)
