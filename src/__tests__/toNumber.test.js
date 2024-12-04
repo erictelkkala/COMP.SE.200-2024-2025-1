@@ -50,6 +50,19 @@ describe('toNumber', () => {
           expect(toNumber('0xFF')).toBe(255)
         })
       })
+      describe('special cases', () => {
+        test('should return 0 for null', () => {
+          expect(toNumber(null)).toBe(0)
+        })
+        test('should handle objects with valueOf method', () => {
+          const obj = {
+            valueOf() {
+              return '123'
+            }
+          }
+          expect(toNumber(obj)).toBe(123)
+        })
+      })
     })
     describe("negative tests", () => {
       describe('values that should return NaN', () => {
@@ -64,6 +77,38 @@ describe('toNumber', () => {
         })
         test('return NaN for object that cannot be converted to number', () => {
           expect(toNumber([1, 2])).toBeNaN()
+        })
+        test('should return NaN for string with non-numeric characters', () => {
+          expect(toNumber('not a number')).toBeNaN()
+        })        
+      })
+      describe('objects', () => {
+        test('should handle objects whose valueOf returns another object', () => {
+          const obj = {
+            valueOf() {
+              return { a: 1 }
+            }
+          }
+          expect(toNumber(obj)).toBeNaN()
+        })
+        test('should return NaN for object with a non-numeric valueOf', () => {
+          const obj = {
+            valueOf() {
+              return 'hello'
+            }
+          }
+          expect(toNumber(obj)).toBeNaN()
+        })
+        test('should return NaN for object with non-numeric toString method', () => {
+          const obj = {
+            toString() {
+              return 'abc'
+            }
+          }
+          expect(toNumber(obj)).toBeNaN()
+        })         
+        test('should return NaN for empty object', () => {
+          expect(toNumber({})).toBeNaN()
         })
       })
       describe('special cases', () => {
