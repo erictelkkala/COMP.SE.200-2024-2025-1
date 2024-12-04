@@ -48,7 +48,7 @@ describe('toString', () => {
         describe('handling special numeric values and booleans', () => {
             //SKIPPED DUE TO BUGS
             test.skip('NaN should be ""', () => {
-                expect(toString(true)).toBe('')
+                expect(toString(NaN)).toBe('')
             })
             test.skip('infinite should be ""', () => {
                 expect(toString(Infinity)).toBe('')
