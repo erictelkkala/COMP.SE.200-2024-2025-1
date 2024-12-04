@@ -27,44 +27,51 @@ describe('isEmpty', () => {
                 expect(isEmpty({})).toBe(true)
             })
         })
-        test('should return true for empty arrays and strings', () => {
-            expect(isEmpty([])).toBe(true)
-            expect(isEmpty('')).toBe(true)
+        describe('empty Map and Set, empty prototype objects', () => {
+            test('should return true for empty Map', () => {
+                expect(isEmpty(new Map())).toBe(true)
+            })
+            test('should return true for empty Set', () => {
+                expect(isEmpty(new Set())).toBe(true)
+            })
+            test('should return true for empty prototype objects', () => {
+                function Foo() {}
+                Foo.prototype.bar = 'baz'
+                expect(isEmpty(new Foo())).toBe(true)
+            })
         })
-        test('should return true for empty objects', () => {
-            expect(isEmpty({})).toBe(true)
-        })
-        test('should return true for empty Map and Set', () => {
-            expect(isEmpty(new Map())).toBe(true)
-            expect(isEmpty(new Set())).toBe(true)
-        })
-        test('should return true for empty prototype objects', () => {
-            function Foo() {}
-            Foo.prototype.bar = 'baz'
-            expect(isEmpty(new Foo())).toBe(true)
-        })
-        test('should return true for false', () => {
-            expect(isEmpty(false)).toBe(false)
-        })
-        test('should return false for 0', () => {
-            expect(isEmpty(0)).toBe(false)
+        describe('False and 0', () => {
+            test('should return true for false', () => {
+                expect(isEmpty(false)).toBe(true)
+            })
+            test('should return true for 0', () => {
+                expect(isEmpty(0)).toBe(true)
+            })
         })
     })
     describe('negative tests', () => {
-        test('should return false for non-empty arrays and strings', () => {
-            expect(isEmpty([1, 2, 3])).toBe(false)
-            expect(isEmpty('abc')).toBe(false)
+        describe('arrays and strings', () => {
+            test('should return false for non-empty arrays', () => {
+                expect(isEmpty([1, 2, 3])).toBe(false)
+            })
+            test('should return false for non-empty strings', () => {
+                expect(isEmpty('abc')).toBe(false)
+            })
         })
         test('should return false for objects with own properties', () => {
             expect(isEmpty({ a: 1 })).toBe(false)
         })
-        test('should return false for non-empty Map and Set', () => {
-            const map = new Map()
-            map.set('key', 'value')
-            const set = new Set()
-            set.add(1)
-            expect(isEmpty(map)).toBe(false)
-            expect(isEmpty(set)).toBe(false)
+        describe('Map and Set', () => {
+            test('should return false for non-empty Map', () => {
+                const map = new Map()
+                map.set('key', 'value')
+                expect(isEmpty(map)).toBe(false)
+            })
+            test('should return false for non-empty Set', () => {
+                const set = new Set()
+                set.add(1)
+                expect(isEmpty(set)).toBe(false)
+            })
         })
         test('should return false for objects with inherited properties', () => {
             const obj = Object.create({ a: 1 })
