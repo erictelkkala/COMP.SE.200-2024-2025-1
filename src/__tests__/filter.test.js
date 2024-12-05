@@ -94,7 +94,7 @@ describe('filter', () => {
         test('filters array to show empty users predicate', () => {
             const users = [{}, {}, {}];
 
-            const expectedUser = [{}, {}, {}];
+            const expectedUser = [];
 
             expect(filter(users, ({ a }) => {})).toEqual(expectedUser);
         });
