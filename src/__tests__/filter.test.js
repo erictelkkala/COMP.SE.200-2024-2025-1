@@ -10,9 +10,9 @@ describe('filter', () => {
                 { user: 'george', wallet: { money: -1 } },
             ];
 
-            const expectedUser = [{ user: 'barney', active: true }];
+            const expectedUsers = [{ user: 'barney', active: true }];
 
-            expect(filter(users, ({ active }) => active)).toEqual(expectedUser);
+            expect(filter(users, ({ active }) => active)).toEqual(expectedUsers);
         });
 
         test('filters array to show only users with specific name using string predicate', () => {
@@ -21,10 +21,10 @@ describe('filter', () => {
                 { user: 'fred', active: false },
             ];
 
-            const expectedUser = [{ user: 'barney', active: true }];
+            const expectedUsers = [{ user: 'barney', active: true }];
 
             expect(filter(users, ({ user }) => user === 'barney')).toEqual(
-                expectedUser,
+                expectedUsers,
             );
         });
 
@@ -34,12 +34,12 @@ describe('filter', () => {
                 { user: 'fred', active: false, wallet: { money: 10 } },
             ];
 
-            const expectedUser = [
+            const expectedUsers = [
                 { user: 'fred', active: false, wallet: { money: 10 } },
             ];
 
             expect(filter(users, ({ wallet }) => wallet.money > 0)).toEqual(
-                expectedUser,
+                expectedUsers,
             );
         });
 
@@ -47,13 +47,13 @@ describe('filter', () => {
         test.skip('filters empty array to be an empty array', () => {
             const users = [];
 
-            const expectedUser = [];
+            const expectedUsers = [];
 
             expect(
                 filter(users, ({ a }) => {
                     a;
                 }),
-            ).toEqual(expectedUser);
+            ).toEqual(expectedUsers);
         });
 
         test.skip('filters array to show no users with empty predicate', () => {
@@ -62,9 +62,9 @@ describe('filter', () => {
                 { user: 'fred', active: false, wallet: { money: 10 } },
             ];
 
-            const expectedUser = [];
+            const expectedUsers = [];
 
-            expect(filter(users, () => {})).toEqual(expectedUser);
+            expect(filter(users, () => {})).toEqual(expectedUsers);
         });
     });
 
@@ -76,30 +76,30 @@ describe('filter', () => {
                 { user: 'fred', active: false, wallet: { money: 10 } },
             ];
 
-            const expectedUser = [
+            const expectedUsers = [
                 { user: 'fred', active: false, wallet: { money: 10 } },
             ];
 
             expect(filter(users, ({ wallet }) => wallet.money > 0)).toEqual(
-                expectedUser,
+                expectedUsers,
             );
         });
 
         test.skip('filters null array to show no users', () => {
             const users = null;
 
-            const expectedUser = [];
+            const expectedUsers = [];
 
-            expect(filter(users, ({ a }) => {})).toEqual(expectedUser);
+            expect(filter(users, ({ a }) => {})).toEqual(expectedUsers);
         });
 
 
         test.skip('filters array to show empty users predicate', () => {
             const users = [{}, {}, {}];
 
-            const expectedUser = [];
+            const expectedUsers = [];
 
-            expect(filter(users, ({ a }) => {})).toEqual(expectedUser);
+            expect(filter(users, ({ a }) => {})).toEqual(expectedUsers);
         });
     });
 });
