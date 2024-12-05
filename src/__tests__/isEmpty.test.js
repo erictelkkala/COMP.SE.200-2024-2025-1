@@ -73,25 +73,28 @@ describe('isEmpty', () => {
                 expect(isEmpty(set)).toBe(false)
             })
         })
-        test('should return false for objects with inherited properties', () => {
-            const obj = Object.create({ a: 1 })
-            expect(isEmpty(obj)).toBe(true)
-        
-            obj.b = 2
-            expect(isEmpty(obj)).toBe(false)
-        })
-        test('should return false for buffers and typed arrays with content', () => {
-            const buffer = Buffer.from([1, 2, 3])
-            expect(isEmpty(buffer)).toBe(false)
-        
-            const typedArray = new Uint8Array([1, 2, 3])
-            expect(isEmpty(typedArray)).toBe(false)
-        })
-        test('should return false for arguments object with values', () => {
-            function testFunc() {
-              expect(isEmpty(arguments)).toBe(false)
-            }
-            testFunc(1, 2, 3)
+        describe('objects, buffers and typed arrays', () => {
+            test('should return false for objects with inherited properties', () => {
+                const obj = Object.create({ a: 1 })
+                expect(isEmpty(obj)).toBe(true)
+            
+                obj.b = 2
+                expect(isEmpty(obj)).toBe(false)
+            })
+            test('should return false for arguments object with values', () => {
+                function testFunc() {
+                  expect(isEmpty(arguments)).toBe(false)
+                }
+                testFunc(1, 2, 3)
+            })
+            test('should return false for buffers with content', () => {
+                const buffer = Buffer.from([1, 2, 3])
+                expect(isEmpty(buffer)).toBe(false)
+            })
+            test('should return false for typed arrays with content', () => {
+                const typedArray = new Uint8Array([1, 2, 3])
+                expect(isEmpty(typedArray)).toBe(false)
+            })
         })
     })
 })

@@ -3,33 +3,33 @@ import isArrayLike from '../isArrayLike';
 describe('isArrayLike', () => {
     describe('positive tests', () => {
         describe('arrays', () => {
-            test('should return true for arrays', () => {
+            test('should return true for populated arrays', () => {
                 expect(isArrayLike([1, 2, 3])).toBe(true)
             });
-            test('should return true for arrays', () => {
+            test('should return true for empty arrays', () => {
                 expect(isArrayLike([])).toBe(true)
             });
         })
         describe('strings', () => {
-            test('should return true for strings', () => {
+            test('should return true for empty strings', () => {
                 expect(isArrayLike('')).toBe(true)
             });
-            test('should return true for strings', () => {
+            test('should return true for populated strings', () => {
                 expect(isArrayLike('abc')).toBe(true)
             });
         })
         describe('array like objects', () => {
-            test('should return true for array-like objects', () => {
+            test('should return true for populated array-like objects', () => {
                 const arrayLikeObject = { length: 3, 0: 'a', 1: 'b', 2: 'c' }
                 expect(isArrayLike(arrayLikeObject)).toBe(true)
             })
-            test('should return true for array-like objects', () => {
+            test('should return true for empty array-like objects', () => {
                 const emptyArrayLike = { length: 0 }
                 expect(isArrayLike(emptyArrayLike)).toBe(true)
             })
         })
         describe('documents', () => {
-            test('should return true for mocked document.body.children', () => {
+            test('should return true for populated mocked document.body.children', () => {
                 const mockChildren = { length: 2, 0: {}, 1: {} }
                 expect(isArrayLike(mockChildren)).toBe(true)
             })
@@ -44,18 +44,16 @@ describe('isArrayLike', () => {
         describe('functions', () => {
             test('should return false for functions', () => {
                 expect(isArrayLike(() => {})).toBe(false)
-            });
+            })
             test('should return false for functions', () => {
                 expect(isArrayLike(function () {})).toBe(false)
-            });
-        })
-        describe('', () => {
-            test('should return false for non-array-like objects', () => {
-                expect(isArrayLike({})).toBe(false)
-                expect(isArrayLike({ a: 1 })).toBe(false)
             })
-            test('should return false for non-array-like objects', () => {
+        })
+        describe('arrays', () => {
+            test('should return false for empty non-array-like objects', () => {
                 expect(isArrayLike({})).toBe(false)
+            })
+            test('should return false for populated non-array-like objects', () => {
                 expect(isArrayLike({ a: 1 })).toBe(false)
             })
         })

@@ -6,7 +6,7 @@ describe('toNumber', () => {
         test('13 should be 13', () => {
           expect(toNumber(13)).toBe(13)
         })
-        test('decimal 3.14 should be 3.14', () => {
+        test('float 3.14 should be 3.14', () => {
           expect(toNumber(3.14)).toBe(3.14)
         })
         test('negative number should be the same', () => {
@@ -75,7 +75,7 @@ describe('toNumber', () => {
         test('return NaN for object that cannot be converted to number', () => {
           expect(toNumber({})).toBeNaN()
         })
-        test('return NaN for object that cannot be converted to number', () => {
+        test('return NaN for an array that cannot be converted to number', () => {
           expect(toNumber([1, 2])).toBeNaN()
         })
         test('should return NaN for string with non-numeric characters', () => {

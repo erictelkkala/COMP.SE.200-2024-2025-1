@@ -6,23 +6,23 @@ describe('toString', () => {
             test('string hello should be "hello"', () => {
                 expect(toString('hello')).toBe('hello')
             })
-            test('empty string is empty string"', () => {
+            test('empty string should be empty string"', () => {
                 expect(toString('')).toBe('')
             })
         })
-        describe('numbers will be strings', () => {
-            test('numbers 13 turns into string', () => {
+        describe('numbers should be strings', () => {
+            test('numbers 13 should turn into string', () => {
                 expect(toString(13)).toBe('13')
             })
-            test('number -12 turns into string', () => {
+            test('number -12 should turn into string', () => {
                 expect(toString(-12)).toBe('-12')
             })
         })
         describe('arrays and symbols', () => {
-            test('convert array with numbers to comma-separated string', () => {
+            test('should convert array with numbers to comma-separated string', () => {
                 expect(toString([1, 2, 3])).toBe('1,2,3')
             })
-            test('convert array with strings to comma separated string', () => {
+            test('should convert array with strings to comma separated string', () => {
                 expect(toString(['a', 'b', 'c'])).toBe('a,b,c')
             })
             test('should handle nested array recursively', () => {

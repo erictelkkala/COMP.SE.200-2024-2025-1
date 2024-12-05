@@ -3,7 +3,7 @@ import drop from '../drop';
 describe('drop', () => {
     describe('positive tests', () => {
         describe('common array cases', () => {
-            test('should drop the default 1 element from the beginning', () => {
+            test('should drop the first element from the beginning by default, if no parameter is provided', () => {
                 expect(drop([1, 2, 3])).toEqual([2, 3])
             })
         
@@ -50,20 +50,25 @@ describe('drop', () => {
             expect(drop({ a: 1, b: 2 }, 1)).toEqual([])
         })
     
-        test('should return an empty array if n is NaN', () => {
+        test('should return the original array if n is NaN', () => {
             expect(drop([1, 2, 3], NaN)).toEqual([1, 2, 3])
         })
     
-        test('should return the original array if `n` is null', () => {
+        test('should return the original array if n is null', () => {
             expect(drop([1, 2, 3], null)).toEqual([1, 2, 3])
         })
+
+        test('should return the array without first element if n is undefined', () => {
+            expect(drop([1, 2, 3], undefined)).toEqual([2, 3])
+        })
     
-        test('should return an empty array if `n` is undefined and array is null', () => {
+        test('should return an empty array if n is undefined and array is null', () => {
             expect(drop(null, undefined)).toEqual([])
         })
     
         test('should return the array if n is a string that cannot be converted to a number', () => {
             expect(drop([1, 2, 3], 'abc')).toEqual([1, 2, 3])
         })
+
     })
 })
