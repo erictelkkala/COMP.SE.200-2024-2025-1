@@ -13,5 +13,8 @@
   "devDependencies": {
     "jest": "^29.7.0",
     "jest-chain": "^1.1.6"
+  },
+  "dependencies": {
+    "jsdom": "^25.0.1"
   }
 }

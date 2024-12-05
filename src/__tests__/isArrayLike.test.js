@@ -1,4 +1,5 @@
 import isArrayLike from '../isArrayLike';
+import { JSDOM } from 'jsdom';
 
 describe('isArrayLike', () => {
     describe('positive tests', () => {
@@ -29,14 +30,14 @@ describe('isArrayLike', () => {
             })
         })
         describe('documents', () => {
-            test('should return true for populated mocked document.body.children', () => {
-                const mockChildren = { length: 2, 0: {}, 1: {} }
-                expect(isArrayLike(mockChildren)).toBe(true)
-            })
-            test('should return true for empty mocked document.body.children', () => {
-                const mockEmptyChildren = { length: 0 }
-                expect(isArrayLike(mockEmptyChildren)).toBe(true)
-            })
+            test('document children should be like array', () => {
+                const dom = new JSDOM('<!DOCTYPE html><html><body></body></html>')
+                const document = dom.window.document
+                
+                const fragment = document.createDocumentFragment()
+
+                expect(isArrayLike(fragment.children)).toBe(true)
+              })
         })
     })
 
@@ -46,7 +47,7 @@ describe('isArrayLike', () => {
                 expect(isArrayLike(() => {})).toBe(false)
             })
             test('should return false for functions', () => {
-                expect(isArrayLike(function () {})).toBe(false)
+                expect(isArrayLike(new Function())).toBe(false)
             })
         })
         describe('arrays', () => {
