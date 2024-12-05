@@ -45,7 +45,7 @@ describe('isObject', () => {
             expect(isObject(undefined)).toBe(false);
         })
 
-        test('Primitive String is an object', () => {
+        test('Primitive String is not an object', () => {
             expect(isObject(String("Hello world!"))).toBe(false);
         })
 
