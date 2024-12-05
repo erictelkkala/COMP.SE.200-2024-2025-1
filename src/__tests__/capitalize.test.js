@@ -33,11 +33,11 @@ describe('capitalize', () => {
             expect(capitalize(1.2)).toBe('1.2');
         });
 
-        test.skip('capitalizes string primitive "" to Undefined', () => {
+        // SKIPPED DUE TO BUGS
+        test.skip('capitalizes string primitive "" to ""', () => {
             expect(capitalize('')).toBe('').toHaveLength(0);
         });
 
-        // SKIPPED DUE TO BUGS
         test.skip('capitalizes null to ""', () => {
             expect(capitalize(null)).toBe('').toHaveLength(0);
         });
